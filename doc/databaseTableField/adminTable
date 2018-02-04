@@ -1,0 +1,28 @@
+
+Id            string `form:"id" json:"id"`
+Account       string `form:"account" json:"account" binding:"required,max=100"`
+Password      string `form:"password" json:"password" binding:"required"`
+Phone_number  string `form:"phone_number" json:"phone_number" binding:"required"`
+Email         string `form:"email" json:"email" binding:"required"`
+Username      string `form:"username" json:"username" binding:"required"`
+Address       string `form:"address" json:"address" binding:"required"`
+Gender        int    `form:"gender" json:"gender" binding:"required"`
+Identity_no   string `form:"identity_no" json:"identity_no" binding:"required"`
+Identity_type string `form:"identity_type" json:"identity_type" binding:"required"`
+Department    string `form:"department" json:"department" binding:"required"`
+Position      string `form:"position" json:"position" binding:"required"`
+
+{
+    "id":"",	//用户ID
+    "account":"admin9999",	//账户名
+    "password":"123456",	//账户密码
+    "phone_number":"12345674567",	//用户手机号
+    "email":"123@qq.com",	//邮箱
+    "username":"德玛",	//用户实名
+    "address":"德玛西亚",	//联系地址
+    "gender":true,	//性别（男：true，女：false）
+    "identity_no":"123123199909091234",	//证件号码
+    "identity_type":"身份证",	//证件类型
+    "department":"皇家马德里",	//所属部门
+    "position":"上单"	//岗位
+}

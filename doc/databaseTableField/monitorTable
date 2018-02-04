@@ -1,0 +1,19 @@
+monitor-table:
+{
+    "id":"",	//设备ID
+    "location":{    //设备位置
+        "location_name":""  //位置描述
+        "floor":""  //设备楼层
+    },
+    "position":{    //设备在平面图中的坐标
+        "x":""  //x坐标
+        "y":""  //y坐标
+    },
+    "name":"",  //监控标识名
+    "type":"",  //监控类型
+    "ip":"",    //ip端口
+    "channal":"",   //传输通道
+    "status":"",    //设备运行状态
+    "updated_at":"",    //更新时间
+    "created_at":"" //创建时间
+}

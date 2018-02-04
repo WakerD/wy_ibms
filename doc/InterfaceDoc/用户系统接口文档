@@ -1,0 +1,145 @@
+数据库字段命名统一小写，单词之间用_相隔。
+
+1.用户注册接口：http://192.168.200.102:8081/v2/admin/signup
+	a.Post请求参数:
+		{
+			"id":"",	//用户ID
+			"account":"admin9999",	//账户名
+			"password":"123456",	//账户密码
+			"phone_number":"12345674567",	//用户手机号
+			"email":"123@qq.com",	//邮箱
+			"username":"德玛",	//用户实名
+			"address":"德玛西亚",	//联系地址
+			"gender":true,	//性别（男：true，女：false）
+			"identity_no":"123123199909091234",	//证件号码
+			"identity_type":"身份证",	//证件类型
+			"department":"皇家马德里",	//所属部门
+			"position":"上单"	//岗位
+		}
+
+	b.请求成功-返回参数：
+		{
+		    "admin": {
+		        "id": "bc79bb4f-c424-4574-8dd0-cf5f4875125c",
+		        "account": "admin9999",
+		        "password": "$2a$10$HqSgJ7egcW2Fk3gtzPsja.Y1jaf5Ril4sA1XxXyuTQ6PTYAaISXRG",
+		        "phone_number": "12345674567",
+		        "email": "123@qq.com",
+		        "username": "德玛",
+		        "address": "德玛西亚",
+		        "gender": true,
+		        "identity_no": "123123199909091234",
+		        "identity_type": "身份证",
+		        "department": "皇家马德里",
+		        "position": "上单",
+		        "updated_at": 1514444252,
+		        "created_at": 1514444252
+		    },
+		    "message": "Success signup"
+		}
+
+2.用户登陆接口：http://192.168.200.102:8081/v2/admin/signin
+	a.Post请求参数:
+		{
+			"account":"admin",	//用户账户
+			"password":"123456"	//用户密码
+		}
+
+	b.请求成功-返回参数：
+		{
+		    "admin": {
+		        "id": "0d59cd51-e3a0-4aa9-a364-5d8bf9e156c3",
+		        "account": "admin",
+		        "password": "$2a$10$WpC7XDo0e9/XGx/Y56mNUuLQr/pYZ5WMHnUv2XMqrNL4TdZy3hMGW",
+		        "phone_number": "12345674567",
+		        "email": "123@qq.com",
+		        "username": "剑圣",
+		        "address": "德玛西亚",
+		        "gender": true,
+		        "identity_no": "123123199909091234",
+		        "identity_type": "身份证",
+		        "department": "皇家马德里",
+		        "position": "打野",
+		        "updated_at": 1514443148,
+		        "created_at": 1514443148
+		    },
+		    "message": "Admin signed in"
+		}
+
+
+3.用户注销登录接口：http://192.168.200.102:8081/v2/admin/signout
+	a.直接Get请求，无需参数
+
+
+	b.请求成功-返回参数：
+		{
+		    "message": "Signed out..."
+		}
+
+4.查询一个用户接口：http://192.168.200.102:8081/v2/admin/findOne
+	a.Post请求参数:
+		{
+		    "id": "a45b0da1-ed02-4e7a-b006-50d0426f940e"	//用户id
+		}
+
+
+	b.请求成功-返回参数：
+		{
+	    	"admin": {
+		        "id": "a45b0da1-ed02-4e7a-b006-50d0426f940e",
+		        "account": "admin2",
+		        "password": "$2a$10$8mb5ChlFVijwwlGkiDILyOyqhdEBcu9cyMIubzrdPWIN3OkqlcbF.",
+		        "phone_number": "12345674567",
+		        "email": "123@qq.com",
+		        "username": "赵信",
+		        "address": "德玛西亚",
+		        "gender": true,
+		        "identity_no": "123123199909091234",
+		        "identity_type": "身份证",
+		        "department": "皇家马德里",
+		        "position": "打野",
+		        "updated_at": 1514443148,
+		        "created_at": 1514443148
+		    },
+		    "message": "Success find one admin"
+		}
+
+5.删除一个用户接口：http://192.168.200.102:8081/v2/admin/deleteOne
+	a.Post请求参数:
+		{
+		    "id": "a45b0da1-ed02-4e7a-b006-50d0426f940e"	//用户id
+		}
+
+
+	b.请求成功-返回参数：
+		{
+		    "adminId": "bc79bb4f-c424-4574-8dd0-cf5f4875125c",
+		    "message": "Success delete one admin"
+		}
+
+6.更新一个用户接口：http://192.168.200.102:8081/v2/admin/upsertOne
+	a.Post请求参数（*：1.更新时id必填。2.字段属性同注册参数）:
+		{
+			"id":"a45b0da1-ed02-4e7a-b006-50d0426f940e",
+			"account":"admin9999",
+			"password":"123456",
+			"phone_number":"12345674567",
+			"email":"123@qq.com",
+			"username":"沈江平，你妈妈喊你回家吃饭。",
+			"address":"德玛西亚",
+			"gender":true,
+			"identity_no":"123123199909091234",
+			"identity_type":"身份证",
+			"department":"皇家马德里",
+			"position":"上单"
+		}
+
+
+	b.请求成功-返回参数：
+		{
+		    "message": "Success upsert one admin"
+		}
+
+前台端口号：192.168.1.101
+后台端口号：192.168.200.102
+

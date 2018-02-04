@@ -1,0 +1,106 @@
+1.显示所有楼层信息接口：http://192.168.200.102:8081/v4/floor
+	a.GET请求:
+
+	b.请求成功-返回参数：
+        {
+            "data": [
+                {
+                    "id": "a83d0ad0-6d02-42a0-ab34-8e087d84acab",
+                    "name": "红楼一层",
+                    "type": "异形结构楼层",
+                    "floor": 9,
+                    "image_url": "http://floor/insertone",
+                    "floor_grid_x": 123,
+                    "Floor_grid_y": 123,
+                    "updated_at": 1514883700,
+                    "created_at": 1514883700
+                }
+            ]
+        }
+
+2.增加一个楼层信息接口：http://192.168.200.102:8081/v4/floor/insertone
+	a.Post请求参数:
+		{
+			"Id":"",	//楼层ID,string
+			"Name":"红楼一层",	//楼层名,string
+			"Type":"异形结构楼层",	//楼层类型,string
+			"Floor":9,	//楼层数,int
+			"Image_url":"http://floor/insertone",	//楼层图url,string
+
+//			"Grid":{    //栅格坐标
+//			    "X":123,
+//              "Y":123
+//			}
+
+            "Floor_grid_x":123, //栅格大小，int
+           	"Floor_grid_y":123
+		}
+
+	b.请求成功-返回参数：
+        {
+            "floor": {
+                "id": "e188ebe9-8262-4bf8-a5e4-346b5217583e",
+                "name": "红楼一层",
+                "type": "异形结构楼层",
+                "floor": 9,
+                "image_url": "http://floor/insertone",
+                "floor_grid_x": 123,
+                "Floor_grid_y": 123,
+                "updated_at": 1514883700,
+                "created_at": 1514883700
+            },
+            "message": "Success insert"
+        }
+
+3.查询一个楼层信息接口：http://192.168.200.102:8081/v4/floor/findone
+	a.GET请求:
+		url?id=xxx  //楼层ID
+
+	b.请求成功-返回参数：
+        {
+            "floor": {
+                "id": "e188ebe9-8262-4bf8-a5e4-346b5217583e",
+                "name": "红楼一层",
+                "type": "异形结构楼层",
+                "floor": 9,
+                "image_url": "http://floor/insertone",
+                "floor_grid_x": 123,
+                "Floor_grid_y": 123,
+                "updated_at": 1514883700,
+                "created_at": 1514883700
+            },
+            "message": "Success find one floor"
+        }
+
+4.更新楼层信息接口：http://192.168.200.102:8081/v4/floor/upsertbyid
+    a.Post请求参数:
+		{
+            "Id":"e188ebe9-8262-4bf8-a5e4-346b5217583e",	//楼层ID，string
+            "Name":"红楼二层",	//楼层名,string
+            "Type":"异形结构楼层",	//楼层类型,string
+            "Floor":2,	//楼层数,int
+            "Image_url":"http://floor/insertone",	//楼层图url,string
+
+//          "Grid":{    //栅格坐标
+//                "X":123,
+//                "Y":123
+//            }
+
+            "Floor_grid_x":321, //栅格大小，int
+            "Floor_grid_y":321
+        }
+
+	b.请求成功-返回参数：
+        {
+            "message": "Success upsert one floor"
+        }
+
+5.删除一个楼层信息接口：http://192.168.200.102:8081/v4/floor/deleteone
+	a.GET请求参数:
+		url?id=xxx  //楼层ID
+
+	b.请求成功-返回参数：
+        {
+            "floorId": "e188ebe9-8262-4bf8-a5e4-346b5217583e",
+            "message": "Success delete one floor"
+        }

@@ -1,0 +1,139 @@
+1.显示所有监控设备接口：http://192.168.200.102:8081/v3/monitor
+	a.GET请求:
+
+	b.请求成功-返回参数：
+		{
+             "data": [
+                {
+                    "id": "2a1dec5f-7061-4aa4-9e8a-21e7f8419c9c",
+                    "name": "监控1",
+                    "type": "sky",
+                    "ip": "192.168.0.0",
+                    "channel": "1234",
+                    "status": 1,
+                    //增加了一个image_url字段***
+                    "location_name": "大堂门前",
+                    "floor": "塔衫一层",
+                    "monitor_position_x": 123,
+                    "monitor_position_y": 123,
+                    "updated_at": 1514876134,
+                    "created_at": 1514876134
+                }
+            ]
+        }
+
+2.增加一个监控设备接口：http://192.168.200.102:8081/v3/monitor/insertone
+	a.Post请求参数:
+		{
+			"Name":"监控1",	//监控设备名，string
+			"Type":"sky",	//设备类型，string
+			"Ip":"192.168.0.0",	//设备端口号，string
+			"Channel":"1234",	//监控通道，string
+			"Status":1,	//监控状态，int
+
+
+//			"Location":{    //设备位置
+//			    "Location_name":"德玛西亚",    //位置描述
+//			    "Floor":123	//楼层位置
+//			},
+//			"Postion":{ //图片坐标
+//			    "X":123,
+//			    "Y":123
+//			}
+
+            "Location_name":"大堂门前",	//位置描述，string
+			"Floor":"塔衫一层",	//楼层位置，string
+            "Monitor_position_x":123    //x坐标，int
+            "Monitor_position_y":123    //y坐标，int
+		}
+
+	b.请求成功-返回参数：
+        {
+            "message": "Success signup",
+            "monitor": {
+                "id": "2a1dec5f-7061-4aa4-9e8a-21e7f8419c9c",
+                "name": "监控1",
+                "type": "sky",
+                "ip": "192.168.0.0",
+                "channel": "1234",
+                "status": 1,
+                "location_name": "大堂门前",
+                "floor": "塔衫一层",
+                "monitor_position_x": 123,
+                "monitor_position_y": 123,
+                "updated_at": 1514876134,
+                "created_at": 1514876134
+            }
+        }
+
+3.查询一个监控设备接口：http://192.168.200.102:8081/v3/monitor/findone
+	a.GET请求:
+		url&id=xxx	//设备id，string
+
+	b.请求成功-返回参数：
+        {
+            "message": "Success find one monitor",
+            "monitor": {
+                "id": "2a1dec5f-7061-4aa4-9e8a-21e7f8419c9c",
+                "name": "监控1",
+                "type": "sky",
+                "ip": "192.168.0.0",
+                "channel": "1234",
+                "status": 1,
+                "location_name": "大堂门前",
+                "floor": "塔衫一层",
+                "monitor_position_x": 123,
+                "monitor_position_y": 123,
+                "updated_at": 1514876134,
+                "created_at": 1514876134
+            }
+        }
+
+
+
+
+4.更新监控设备信息接口：http://192.168.200.102:8081/v3/monitor/upsertbyid
+    a.Post请求参数:
+		{	
+			"Id":"2a1dec5f-7061-4aa4-9e8a-21e7f8419c9c"	//设备id，string
+			"Name":"监控1",	//监控设备名，string
+			"Type":"little pig",	//设备类型，string
+			"Ip":"192.168.0.0",	//设备端口号，string
+			"Channel":"1234",	//监控通道，string
+			"Status":1,	//监控状态，int
+
+
+//			"Location":{    //设备位置
+//			    "Location_name":"德玛西亚",    //位置描述
+//			    "Floor":123	//楼层位置
+//			},
+//			"Postion":{ //图片坐标
+//			    "X":123,
+//			    "Y":123
+//			}
+
+            "Location_name":"大堂门前",	//位置描述，string
+			"Floor":"塔衫一层",	//楼层位置，string
+            "Monitor_position_x":321    //x坐标，int
+            "Monitor_position_y":321    //y坐标，int
+		}
+
+	b.请求成功-返回参数：
+        {
+            "message": "Success upsert one monitor"
+        }
+
+5.删除一个监控设备接口：http://192.168.200.102:8081/v3/monitor/deleteone
+	a.Get请求参数:
+		url&id=xxx	//设备id，string
+
+
+	b.请求成功-返回参数：
+        {
+            "message": "Success delete one monitor",
+            "monitorId": "2a1dec5f-7061-4aa4-9e8a-21e7f8419c9c"
+        }
+
+
+
+
