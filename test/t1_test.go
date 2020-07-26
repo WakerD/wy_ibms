@@ -17,7 +17,7 @@ import (
 )
 
 var meterId int
-var slaveId string
+var subordinateId string
 
 func Test_string(t *testing.T)  {
 	a,v,e:=1,2,3
@@ -138,7 +138,7 @@ func Test_FindDate(t *testing.T)  {
 	}
 	//求一个电表每天的电表参数均值
 	a_sum, v_sum, e_sum, n := 0.00, 0.00, 0.00, 0.00
-	//var SlaveId string
+	//var SubordinateId string
 	for _, v := range electricityLogs {
 		//insertElectricMeterLogForm.Created_at=utils.UnixInt64ToTime(v.Created_at)
 		a_sum = a_sum + v.Current
@@ -154,7 +154,7 @@ func Test_FindDate(t *testing.T)  {
 
 type ElectricityLog struct {
 	Id string	`db:"id" json:"id"`
-	SlaveId string	`db:"slaveid" json:"slaveid"`
+	SubordinateId string	`db:"subordinateid" json:"subordinateid"`
 	Type string		`db:"type" json:"type"`
 	Current float64 `db:"current" json:"current"`
 	Voltage float64 `db:"voltage" json:"voltage"`
@@ -170,7 +170,7 @@ func Test_mgo(t *testing.T)  {
 	endstamp := startstamp + 86400
 	c:=db.GetDB().C("electricityLogMin")
 	c.Find(&bson.M{
-		"slaveid":meterId,
+		"subordinateid":meterId,
 		"type":"every_minute",
 		"created_at":bson.M{
 			"$gt": startstamp,

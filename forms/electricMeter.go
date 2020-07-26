@@ -26,7 +26,7 @@ type Position struct {
 
 type InsertElectricMeterLogForm struct {
 	Id string	`form:"id" json:"id"`
-	SlaveId string	`form:"slaveId" json:"slaveId"`
+	SubordinateId string	`form:"subordinateId" json:"subordinateId"`
 	Type string		`form:"type" json:"type"`
 	Current float64 `form:"current" json:"current"`
 	Voltage float64 `form:"voltage" json:"voltage"`

@@ -126,7 +126,7 @@ func (ctrl ElectricityMeterController) InsertOneElectricityMeterLogMin() {
 				if math.IsNaN(a_avg) || math.IsNaN(v_avg) || math.IsNaN(e_avg) {
 					fmt.Println("electricMeter插入的数值有NAN值,不存入mongo", a_avg, v_avg, e_avg)
 				} else {
-					insertElectricMeterLogForm.SlaveId = strconv.Itoa(meterId)
+					insertElectricMeterLogForm.SubordinateId = strconv.Itoa(meterId)
 					insertElectricMeterLogForm.Current = a_avg
 					insertElectricMeterLogForm.Voltage = v_avg
 					insertElectricMeterLogForm.TolalActiveEnergy = e_avg
@@ -191,7 +191,7 @@ func (ctrl ElectricityMeterController) InsertOneElectricityMeterLogHour() {
 				if math.IsNaN(a_sum) || math.IsNaN(v_sum) || math.IsNaN(e_sum) {
 					fmt.Println("electricityMeterLog插入的数值有误，存在NaN值,不存入mongo", a_sum, v_sum, e_sum)
 				} else {
-					insertElectricMeterLogForm.SlaveId = strconv.Itoa(meterId)
+					insertElectricMeterLogForm.SubordinateId = strconv.Itoa(meterId)
 					insertElectricMeterLogForm.Current = a_sum / n
 					insertElectricMeterLogForm.Voltage = v_sum / n
 					insertElectricMeterLogForm.TolalActiveEnergy = e_sum / (n*1000)
@@ -250,7 +250,7 @@ func (ctrl ElectricityMeterController) InsertOneElectricityMeterLogDay() {
 				if math.IsNaN(a_sum) || math.IsNaN(v_sum) || math.IsNaN(e_sum) {
 					fmt.Println("electricityMeterLog插入的数值有NAN值,不存入mongo", a_sum, v_sum, e_sum)
 				} else {
-					insertElectricMeterLogForm.SlaveId = strconv.Itoa(meterId)
+					insertElectricMeterLogForm.SubordinateId = strconv.Itoa(meterId)
 					insertElectricMeterLogForm.Current = a_sum / n
 					insertElectricMeterLogForm.Voltage = v_sum / n
 					insertElectricMeterLogForm.TolalActiveEnergy = e_sum / (n*1000)
@@ -307,7 +307,7 @@ func (ctrl ElectricityMeterController) InsertOneElectricityMeterLogMonth() {
 				if math.IsNaN(a_sum) || math.IsNaN(v_sum) || math.IsNaN(e_sum) {
 					fmt.Println("electricityMeterLog插入的数值有NAN值,不存入mongo", a_sum, v_sum, e_sum)
 				} else {
-					insertElectricMeterLogForm.SlaveId = strconv.Itoa(meterId)
+					insertElectricMeterLogForm.SubordinateId = strconv.Itoa(meterId)
 					insertElectricMeterLogForm.Current = a_sum / n
 					insertElectricMeterLogForm.Voltage = v_sum / n
 					insertElectricMeterLogForm.TolalActiveEnergy = e_sum / (n*1000)
@@ -381,7 +381,7 @@ func (ctrl ElectricityMeterController) DeleteOneElectricityMeter(c *gin.Context)
 //根据设备id，查询相应时间段电表日志
 func (ctrl ElectricityMeterController) FindElectricityMeterLogByType (c *gin.Context)  {
 	//meterId string, logtype string, starttime int64, endtime int64
-	meterId := c.Query("slaveid")
+	meterId := c.Query("subordinateid")
 	logtype := c.Query("type")
 	starttime, err := strconv.Atoi(c.Query("starttime"))
 	endtime, err := strconv.Atoi(c.Query("endtime"))
