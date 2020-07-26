@@ -16,7 +16,7 @@ import (
 type ElectricityMeter struct {
 	Id         string        `db:"id, primarykey, autoincrement" json:"id"`
 	Name       string        `db:"name" json:"name"`
-	SlaveId    string        `db:"slaveid" json:"slaveid"`
+	SubordinateId    string        `db:"subordinateid" json:"subordinateid"`
 	Type       string        `db:"type" json:"type"`
 	Ip         string        `db:"ip" json:"ip"`
 	Channel    string        `db:"channel" json:"channel"`
@@ -30,7 +30,7 @@ type ElectricityMeter struct {
 
 type ElectricityLog struct {
 	Id                string  `db:"id" json:"id"`
-	SlaveId           string  `db:"slaveid" json:"slaveid"`
+	SubordinateId           string  `db:"subordinateid" json:"subordinateid"`
 	Type              string  `db:"type" json:"type"`
 	Current           float64 `db:"current" json:"current"`
 	Voltage           float64 `db:"voltage" json:"voltage"`
@@ -120,7 +120,7 @@ func (m ElectricityMeterModel) InsertOneMeterLogMin(form forms.InsertElectricMet
 	err = c.Insert(
 		&ElectricityLog{
 			Id:                form.Id,
-			SlaveId:           form.SlaveId,
+			SubordinateId:           form.SubordinateId,
 			Type:              form.Type,
 			Current:           form.Current,
 			Voltage:           form.Voltage,
@@ -157,7 +157,7 @@ func (m ElectricityMeterModel) InsertOneMeterLogHour(form forms.InsertElectricMe
 	err = c.Insert(
 		&ElectricityLog{
 			Id:                form.Id,
-			SlaveId:           form.SlaveId,
+			SubordinateId:           form.SubordinateId,
 			Type:              form.Type,
 			Current:           form.Current,
 			Voltage:           form.Voltage,
@@ -194,7 +194,7 @@ func (m ElectricityMeterModel) InsertOneMeterLogDay(form forms.InsertElectricMet
 	err = c.Insert(
 		&ElectricityLog{
 			Id:                form.Id,
-			SlaveId:           form.SlaveId,
+			SubordinateId:           form.SubordinateId,
 			Type:              form.Type,
 			Current:           form.Current,
 			Voltage:           form.Voltage,
@@ -231,7 +231,7 @@ func (m ElectricityMeterModel) InsertOneMeterLogMonth(form forms.InsertElectricM
 	err = c.Insert(
 		&ElectricityLog{
 			Id:                form.Id,
-			SlaveId:           form.SlaveId,
+			SubordinateId:           form.SubordinateId,
 			Type:              form.Type,
 			Current:           form.Current,
 			Voltage:           form.Voltage,
@@ -253,7 +253,7 @@ func (m ElectricityMeterModel) FindMeterLogByTypeAndDate(meterId string, logtype
 		fmt.Println("starttime %d - endtime %d", starttime, endtime)
 		c := db.GetDB().C("electricityLogMin")
 		c.Find(&bson.M{
-			"slaveid": meterId,
+			"subordinateid": meterId,
 			"type":    logtype,
 			"created_at": bson.M{
 				"$lte": endtime,
@@ -262,7 +262,7 @@ func (m ElectricityMeterModel) FindMeterLogByTypeAndDate(meterId string, logtype
 	} else if logtype == "every_hour" {
 		c := db.GetDB().C("electricityLogHour")
 		c.Find(&bson.M{
-			"slaveid": meterId,
+			"subordinateid": meterId,
 			"type":    logtype,
 			"created_at": bson.M{
 				"$gte": starttime,
@@ -271,7 +271,7 @@ func (m ElectricityMeterModel) FindMeterLogByTypeAndDate(meterId string, logtype
 	} else if logtype == "every_day" {
 		c := db.GetDB().C("electricityLogDay")
 		c.Find(&bson.M{
-			"slaveid": meterId,
+			"subordinateid": meterId,
 			"type":    logtype,
 			"created_at": bson.M{
 				"$gte": starttime,
@@ -280,7 +280,7 @@ func (m ElectricityMeterModel) FindMeterLogByTypeAndDate(meterId string, logtype
 	} else if logtype == "every_month" {
 		c := db.GetDB().C("electricityLogMth")
 		c.Find(&bson.M{
-			"slaveid": meterId,
+			"subordinateid": meterId,
 			"type":    logtype,
 			"created_at": bson.M{
 				"$gte": starttime,
@@ -297,7 +297,7 @@ func (m ElectricityMeterModel) FindMeterLogByTypeAndDate(meterId string, logtype
 // 		fmt.Println("starttime %d - endtime %d", starttime, endtime)
 // 		c := db.GetDB().C("electricityLogMin")
 // 		c.Find(&bson.M{
-// 			"slaveid": meterId,
+// 			"subordinateid": meterId,
 // 			"type":    logtype,
 // 			"created_at": bson.M{
 // 				"$lte": endtime,
@@ -306,7 +306,7 @@ func (m ElectricityMeterModel) FindMeterLogByTypeAndDate(meterId string, logtype
 // 	} else if logtype == "every_day" {
 // 		c := db.GetDB().C("electricityLogDay")
 // 		c.Find(&bson.M{
-// 			"slaveid": meterId,
+// 			"subordinateid": meterId,
 // 			"type":    logtype,
 // 			"created_at": bson.M{
 // 				"$gte": starttime,
@@ -314,7 +314,7 @@ func (m ElectricityMeterModel) FindMeterLogByTypeAndDate(meterId string, logtype
 // 		return electricityLogs, err
 // 	} else if logtype == "every_month" {
 // 		c := db.GetDB().C("electricityLogMth")
-// 		c.Find(&bson.M{"slaveid": meterId, "type": logtype, "created_at": bson.M{"$gte": starttime, "$lte": endtime}}).All(&electricityLogs)
+// 		c.Find(&bson.M{"subordinateid": meterId, "type": logtype, "created_at": bson.M{"$gte": starttime, "$lte": endtime}}).All(&electricityLogs)
 // 		return electricityLogs, err
 // 	} else {
 // 		fmt.Println("查询一段时间电表日志出错")
